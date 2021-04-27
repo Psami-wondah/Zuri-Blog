@@ -15,24 +15,28 @@
     </head>
 <body>
 {% include 'messages.html' %}
-<header>
+<header class="container">
+
     <div class="nav-left">
         <h1><a href="{% url 'home' %}">Blogwonda</a></h1>
     </div>
+
     {% if user.is_authenticated %}
-    <div class="nav-right">
-        <a href="{% url 'post_new' %}"><button type="button" class="btn btn-primary">New Blog Post</button></a>
-        <a class="nav-link" href="/logout">Logout</a>
-        <a class="nav-link" href="#">Welcome, {{ user.username }}</a>
+    <div class="navbar nav-right ">
+        <a href="{% url 'post_new' %}"><button type="button" class="btn btn-info">New Blog Post</button></a>
+        <a class="nav-link" href="/logout"><button type="button" class="btn btn-info">Logout</button></a>
+        <p>Welcome, {{ user.username }}</p>
     </div>
 
 
 
     {% else %}
-        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link" href="/register" >Register</a>
         <a class="nav-link" href="/login">Login</a>
 
     {% endif %}
+
+
 </header>
 <div>
     {% block content %}

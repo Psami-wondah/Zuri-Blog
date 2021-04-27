@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
     #path('accounts/', include('django.contrib.auth.urls')),
-    path('password_reset', auth_views.PasswordResetView.as_view(template_name = 'password/password_reset.html',
-                                                                subject_template_name='password/password_reset_subject.txt',
+    path('password_reset', auth_views.PasswordResetView.as_view(template_name= 'password/password_reset.html',
+         subject_template_name='password/password_reset_subject.txt',
                                                                 email_template_name='password/password_reset_email.html'),
          name='password_reset'),
     path('password_reset/done/',

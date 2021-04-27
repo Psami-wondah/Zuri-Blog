@@ -8,9 +8,11 @@
     <p>{{ post.body|linebreaks }}</p>
     </div>
     {% if user.is_authenticated %}
+        <div class="container">
         <a href="{% url 'post_edit' post.pk %}"><button type="button" class="btn btn-primary">Edit {{ post.title }} Post</button></a>
         <a href="{% url 'post_delete' post.pk %}"><button type="button" class="btn btn-primary">Delete {{ post.title }} Post</button></a>
-    <br /><br />
+        </div>
+        <br /><br />
         <h4>Comments</h4>
   <div class="row">
     <div class="col-md-8">

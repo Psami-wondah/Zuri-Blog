@@ -4,11 +4,11 @@
     <div class="container">
 
     {% for post in object_list %}
-        <div class="container border" style="border-radius: 15px">
+{#        <div class="container border" style="border-radius: 15px">#}
         <div class="post-entry">
-            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+            <h2><a href="{% url 'post_detail' post.pk %}" class="text-info"><div class="jumbotron" style="border-radius: 15px"><h1>{{ post.title }}</h1></div></a></h2>
 {#        <p>{{ post.body }}</p>#}
-        </div>
+{#        </div>#}
         </div>
         <br />
     {% endfor %}
