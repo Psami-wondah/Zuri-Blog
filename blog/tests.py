@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from .models import Post
+from .models import Post, Comments
 
 
 # Create your tests here.
@@ -17,6 +17,13 @@ class BlogTests(TestCase):
             title='A good title',
             body='Nice body',
             author=self.user
+        )
+
+        self.comment = Comments.objects.create(
+            body='Nice body',
+            author=self.user,
+            post= self.post,
+
         )
 
     def test_string_representation(self):
@@ -42,3 +49,8 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'A good title')
         self.assertTemplateUsed(response, 'post_detail.html')
+
+    def test_comment_content(self):
+        self.assertEqual(f'{self.comment.post}', 'A good title')
+        self.assertEqual(f'{self.comment.author}', 'testuser')
+        self.assertEqual(f'{self.comment.body}', 'Nice body')

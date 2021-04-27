@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import BlogListView, password_reset_request, logout_request, post_detail, \
+from .views import BlogListView, logout_request, post_detail, \
     BlogCreateView,  BlogUpdateView, BlogDeleteView, signup, login_request
 
 urlpatterns = [
 
-    path("password_reset", password_reset_request, name="password_reset"),
+    #path("password_reset", password_reset_request, name="password_reset"),
     path('logout/', logout_request, name='logout'),
     path('login/', login_request, name='login'),
     path('register/', signup, name='register'),
