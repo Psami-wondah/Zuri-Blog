@@ -6,7 +6,7 @@
     {% for post in object_list %}
 {#        <div class="container border" style="border-radius: 15px">#}
         <div class="post-entry">
-            <h2><a href="{% url 'post_detail' post.pk %}" class="text-info"><div class="jumbotron" style="border-radius: 15px"><h3>{{ post.title }}</h3></div></a></h2>
+            <h2><a href="{% url 'post_detail' post.pk %}" class="text-info"><div class="jumbotron" style="border-radius: 15px"><h3>{{ post.title }}</h3><span style="font-size: 14px" class="text-secondary">Written by {{ post.author }}</span></div></a></h2>
 {#        <p>{{ post.body }}</p>#}
 {#        </div>#}
         </div>

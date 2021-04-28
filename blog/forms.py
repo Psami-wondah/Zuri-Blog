@@ -15,9 +15,14 @@ class SignUpForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['body',]
+        fields = ['title', 'body']
 
 class NewCommentForm(forms.ModelForm):
     class Meta:
         model = Comments
         fields =['body']
+
+class NewPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'body']

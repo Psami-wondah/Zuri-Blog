@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Post
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout, authenticate
-from .forms import SignUpForm, NewCommentForm
+from .forms import SignUpForm, NewCommentForm, PostForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -15,10 +15,10 @@ class BlogListView(ListView):
     template_name = 'home.html'
 
 
-class BlogCreateView(CreateView):
-    model = Post
-    template_name = 'post_new.html'
-    fields = ['title', 'author', 'body']
+# class BlogCreateView(CreateView): same as the Detail view
+#     model = Post
+#     template_name = 'post_new.html'
+#     fields = ['title', 'author', 'body']
 
 
 class BlogUpdateView(UpdateView):
@@ -31,6 +31,12 @@ class BlogDeleteView(DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('home')
+
+# class BlogDetailView(DetailView): So here I couldn't use a class based view here so I switched to a function view below
+#     model = Post
+#     template_name = 'post_detail.html'
+
+
 
 
 
@@ -95,6 +101,18 @@ def post_detail(request, pk):
     return render(request, 'post_detail.html', {'post':post, 'form':form})
 
 
+def post_form(request):
+    user = request.user
+    if request.method == 'POST':
+        form =PostForm(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.author = user
+            data.save()
+            return redirect('home')
+    else:
+        form = PostForm()
+    return render(request, 'post_new.html', {'form':form})
 
 
 
