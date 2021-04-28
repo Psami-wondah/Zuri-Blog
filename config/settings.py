@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import environ, os, whitenoise, django_heroku
+import environ, os, whitenoise, django_heroku, sys
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -94,18 +94,20 @@ MESSAGE_TAGS = {
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+if 'test' in sys.argv:
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3'}}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('ENGINE'),
+            'NAME': os.getenv('NAME'),
+            'HOST': os.getenv('HOST'),
+            'PORT': os.getenv('PORT'),
+            'USER': os.getenv('USER'),
+            'PASSWORD': os.getenv('PASSWORD'),
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('ENGINE'),
-        'NAME': os.getenv('NAME'),
-        'HOST': os.getenv('HOST'),
-        'PORT': os.getenv('PORT'),
-        'USER': os.getenv('USER'),
-        'PASSWORD': os.getenv('PASSWORD'),
 
-
-    }
+        }
 }
 
 
