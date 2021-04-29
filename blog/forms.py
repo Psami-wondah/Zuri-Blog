@@ -20,9 +20,9 @@ class PostForm(forms.ModelForm):
 class NewCommentForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields =['body']
+        fields = ['body']
 
-class NewPostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title', 'body']
+# class NewPostForm(forms.ModelForm):
+#     class Meta:
+#         model = Post
+#         fields = ['title', 'body']
