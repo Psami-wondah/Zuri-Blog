@@ -4,7 +4,7 @@ A mini blog
 Supports the following features for users. 
 1. Registration 
 2. Login 
-3. Reset Password 
+3. Reset Password through email
 4. Create Post
 5. Delete Post
 6. Edit post
