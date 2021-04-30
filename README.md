@@ -9,6 +9,7 @@ Supports the following features for users.
 5. Delete Post
 6. Edit post
 7. Comment on a post
+8. Change Password
 
 Technologies used :-
 

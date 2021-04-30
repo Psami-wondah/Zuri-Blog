@@ -13,29 +13,45 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'js/popper-2.9.2.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
     </head>
 <body>
 {% include 'messages.html' %}
-<header class="container">
+<header class="navbar-expand-sm container">
 
-    <div class="navbar nav-left">
+    <a class="navbar navbar-left">
         <h1 class="font-weight-bold"><a href="{% url 'home' %}" class="text-info">Blogwonda</a></h1>
-    </div>
+    </a>
 
     {% if user.is_authenticated %}
-    <div class="navbar nav-right ">
-        <a href="{% url 'post_new' %}"><button type="button" class="btn btn-info">New Blog Post</button></a>
-        <a class="nav-link" href="/logout"><button type="button" class="btn btn-info">Logout</button></a>
-        <p class="text-info font-italic">Welcome, {{ user.username }}</p>
+    <div class="navbar nav-right">
+{#    <div class="collapse navbar-collapse" id="mainMenu">#}
+
+          <button type="button" class="btn nav-link dropdown-toggle text-info" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Welcome, {{ user.username }}
+          </button>
+    <div class="dropdown-menu border" style="border-radius: 10px" aria-labelledby="userMenu">
+        <a class="dropdown-item btn-light" href="{% url 'post_new' %}"><button class="btn btn-info" type="submit">New Blog Post</button></a>
+        <a class="dropdown-item btn-light"  href="{% url 'password_change' %}"><button class="btn btn-info" type="submit">Change Password</button></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item btn-light" href="/logout"><button class="btn btn-outline-info" type="submit">Logout</button></a>
+{#        <p class="text-info font-italic">Welcome, {{ user.username }}</p>#}
     </div>
+
+    </div>
+{#    </div>#}
+
 
 
 
     {% else %}
+        <div class=" nav-right">
+        <a class="nav-link" href="/login"><button class="btn btn-outline-info">Login</button></a>
         <a class="nav-link" href="/register" ><button class="btn btn-info">Register</button></a>
-        <a class="nav-link" href="/login"><button class="btn btn-info">Login</button></a>
-
+        </div>
     {% endif %}
 
 
