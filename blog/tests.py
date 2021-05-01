@@ -66,6 +66,7 @@ class BlogTests(TestCase):
         form = response.context.get('form')
         self.assertIsInstance(form, forms.ModelForm)
 
+
     def test_comment_list_view(self):
         response = self.client.get('/post/1/')
         self.assertEqual(response.status_code, 200)
@@ -89,6 +90,9 @@ class SignUpTests(TestCase):
     def test_signup_url_resolves_signup_view(self):
         view = resolve('/register/')
         self.assertEquals(view.func, signup)
+
+    def test_csrf(self):
+        self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     # def test_contains_form(self):
     #     form = self.response.context.get('form')
@@ -181,6 +185,9 @@ class ResetPassWordTests(TestCase):
     def test_contains_form(self):
         form = self.response.context.get('form')
         self.assertIsInstance(form, PasswordResetForm)
+
+    def test_csrf(self):
+        self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_form_inputs(self):
         '''
